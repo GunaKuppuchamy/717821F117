@@ -1,25 +1,29 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
-function App() {
+
+
+
+import { useState, useEffect } from 'react';
+const App = () => {
+  const [register, setRegister] = useState([]);
+  useEffect(() => {
+    fetch('https://20.244.56.144/products/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxprice=1000')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setRegister(data);
+      });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      
+      {register.map((register) => (
+       <p>{register.productName} {register.price} {register.rating}{register.discount}{register.availability}</p>
+      ))}
     </div>
   );
-}
-
+};
 export default App;
