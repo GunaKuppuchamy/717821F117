@@ -8,13 +8,13 @@ import { useState, useEffect } from 'react';
 const App = () => {
   const [register, setRegister] = useState([]);
   useEffect(() => {
-    fetch('https://20.244.56.144/products/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxprice=1000')
+    fetch('https://20.244.56.144/products/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxprice=10000')
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         console.log(data);
-        setRegister(data);
+        // setRegister(data);
       });
   }, []);
   return (
